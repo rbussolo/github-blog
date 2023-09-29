@@ -2,7 +2,7 @@ import { faArrowUpRightFromSquare, faBuilding, faUserGroup } from '@fortawesome/
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-import { BlogContainer, ProfileContainer, ProfileContent, ProfileContentBody, ProfileContentFooter, ProfileContentHeader, ProfileImage, ProfileInfo, ProfileLink, ProfileTitle } from "./styles";
+import { BlogContainer, PostBody, PostContainer, PostContent, PostHeader, PostTime, PostTitle, ProfileContainer, ProfileContent, ProfileContentBody, ProfileContentFooter, ProfileContentHeader, ProfileImage, ProfileInfo, ProfileLink, ProfileTitle, SearchContainer, SearchHeader, SearchInput, SearchResult, SearchTitle } from "./styles";
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export function Blog() {
@@ -46,7 +46,75 @@ export function Blog() {
         </ProfileContent>
       </ProfileContainer>
 
-      
+      <SearchContainer>
+        <SearchHeader>
+          <SearchTitle>Publicações</SearchTitle>
+          <SearchResult>6 publicações</SearchResult>
+        </SearchHeader>
+        <SearchInput placeholder="Buscar conteúdo" />
+      </SearchContainer>
+
+      <PostContainer>
+        <PostContent>
+          <PostHeader>
+            <PostTitle>JavaScript data types and data structures</PostTitle>
+            <PostTime>Ha 1 dia</PostTime>
+          </PostHeader>
+
+          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
+</PostBody>
+        </PostContent>
+
+        <PostContent>
+          <PostHeader>
+            <PostTitle>JavaScript data types and data structures</PostTitle>
+            <PostTime>Ha 1 dia</PostTime>
+          </PostHeader>
+
+          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
+</PostBody>
+        </PostContent>
+
+        <PostContent>
+          <PostHeader>
+            <PostTitle>JavaScript data types and data structures</PostTitle>
+            <PostTime>Ha 1 dia</PostTime>
+          </PostHeader>
+
+          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
+</PostBody>
+        </PostContent>
+
+        <PostContent>
+          <PostHeader>
+            <PostTitle>JavaScript data types and data structures</PostTitle>
+            <PostTime>Ha 1 dia</PostTime>
+          </PostHeader>
+
+          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
+</PostBody>
+        </PostContent>
+
+        <PostContent>
+          <PostHeader>
+            <PostTitle>JavaScript data types and data structures</PostTitle>
+            <PostTime>Ha 1 dia</PostTime>
+          </PostHeader>
+
+          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
+</PostBody>
+        </PostContent>
+
+        <PostContent>
+          <PostHeader>
+            <PostTitle>JavaScript data types and data structures</PostTitle>
+            <PostTime>Ha 1 dia</PostTime>
+          </PostHeader>
+
+          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
+</PostBody>
+        </PostContent>
+      </PostContainer>
     </BlogContainer>
   )
 }

@@ -81,3 +81,86 @@ export const ProfileInfo = styled.div`
   align-items: center;
   gap: 0.5rem;
 `;
+
+export const SearchContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  margin-top: 4.5rem;
+`
+
+export const SearchHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const SearchTitle = styled.span`
+  font-size: 1.125rem;
+  font-weight: bold;
+  line-height: 1.6;
+`;
+
+export const SearchResult = styled.span`
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: ${props => props.theme["blue-300"]}
+`;
+
+export const SearchInput = styled.input`
+  border-radius: 6px;
+  border: 1px solid ${props => props.theme["gray-600"]};
+  background-color: ${props => props.theme["gray-950"]};
+  color: ${props => props.theme["gray-300"]};
+  padding: 0.75rem 1rem;
+
+  &::placeholder {
+    color: ${props => props.theme["gray-500"]};
+  }
+`;
+
+export const PostContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 16.25rem;
+  gap: 2rem;
+
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+`;
+
+export const PostContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding: 2rem;
+  border: none;
+  border-radius: 10px;
+  background-color: ${props => props.theme["gray-700"]};
+`;
+
+export const PostHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const PostTitle = styled.h1`
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.6;
+`;
+
+export const PostTime = styled.span`
+  font-size: 0.875rem;
+  line-height: 1.6;
+  white-space: nowrap;
+  color: ${props => props.theme["blue-300"]}
+`;
+
+export const PostBody = styled.div`
+  max-height: 7rem;
+  min-height: 7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
