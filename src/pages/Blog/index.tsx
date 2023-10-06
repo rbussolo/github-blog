@@ -1,119 +1,63 @@
-import { faArrowUpRightFromSquare, faBuilding, faUserGroup } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { BlogContainer, PostBody, PostContainer, PostContent, PostHeader, PostTime, PostTitle, SearchContainer, SearchHeader, SearchInput, SearchResult, SearchTitle } from "./styles";
+import { Profile } from '../../components/Profile';
+import { useEffect, useState } from "react";
+import { formatDistanceToNow } from "date-fns";
 
-
-import { BlogContainer, PostBody, PostContainer, PostContent, PostHeader, PostTime, PostTitle, ProfileContainer, ProfileContent, ProfileContentBody, ProfileContentFooter, ProfileContentHeader, ProfileImage, ProfileInfo, ProfileLink, ProfileTitle, SearchContainer, SearchHeader, SearchInput, SearchResult, SearchTitle } from "./styles";
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+type GithubSearchResponse = {
+  total_count: number;
+  items?: [{
+    id: number;
+    url: string;
+    number: number;
+    title: string;
+    created_at: string;
+    body: string;
+  }]
+}
 
 export function Blog() {
+  const [search, setSearch] = useState("");
+  const [githubSearch, setGithubSearch] = useState<GithubSearchResponse>({
+    total_count: 0,
+  });
+
+  const {total_count, items} = githubSearch;
+
+  useEffect(() => {
+    fetch(`https://api.github.com/search/issues?q=${search}%20repo:rocketseat-education/reactjs-github-blog-challenge`)
+    .then(response => response.json())
+    .then(data => setGithubSearch(data));
+  }, [search]);
+
   return (
     <BlogContainer>
-      <ProfileContainer>
-        <ProfileImage src="https://avatars.githubusercontent.com/u/21092783?v=4"/>
-
-        <ProfileContent>
-          <ProfileContentHeader>
-            <ProfileTitle>
-              Rodrigo Bussolo
-            </ProfileTitle>
-
-            <ProfileLink href="https://github.com/rbussolo">
-              <span>GITHUB</span>
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-            </ProfileLink>
-          </ProfileContentHeader>
-
-          <ProfileContentBody>
-            Hello, my name is Rodrigo, I'm a Software Developer and I had been working for over 10 years in this field. I'm studying ReactJS and NodeJS to start a new job.
-          </ProfileContentBody>
-
-          <ProfileContentFooter>
-            <ProfileInfo>
-              <FontAwesomeIcon icon={faGithub} />
-              <span>rbussolo</span>
-            </ProfileInfo>
-
-            <ProfileInfo>
-              <FontAwesomeIcon icon={faBuilding} />
-              <span>Coplan</span>
-            </ProfileInfo>
-
-            <ProfileInfo>
-              <FontAwesomeIcon icon={faUserGroup} />
-              <span>32 seguidores</span>
-            </ProfileInfo>
-          </ProfileContentFooter>
-        </ProfileContent>
-      </ProfileContainer>
+      <Profile />
 
       <SearchContainer>
         <SearchHeader>
           <SearchTitle>Publicações</SearchTitle>
-          <SearchResult>6 publicações</SearchResult>
+          <SearchResult>{total_count} publicações</SearchResult>
         </SearchHeader>
-        <SearchInput placeholder="Buscar conteúdo" />
+        <SearchInput 
+          placeholder="Buscar conteúdo" 
+          type="text"
+          onBlur={(event) => setSearch(event.target.value)}
+        />
       </SearchContainer>
 
       <PostContainer>
-        <PostContent>
-          <PostHeader>
-            <PostTitle>JavaScript data types and data structures</PostTitle>
-            <PostTime>Ha 1 dia</PostTime>
-          </PostHeader>
+        { items && items.map(item => {
+          return (
+            <PostContent key={item.id} href={`/post/${item.number}`}>
+              <PostHeader>
+                <PostTitle>{item.title}</PostTitle>
+                <PostTime>{formatDistanceToNow(new Date(item.created_at))}</PostTime>
+              </PostHeader>
 
-          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
-</PostBody>
-        </PostContent>
-
-        <PostContent>
-          <PostHeader>
-            <PostTitle>JavaScript data types and data structures</PostTitle>
-            <PostTime>Ha 1 dia</PostTime>
-          </PostHeader>
-
-          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
-</PostBody>
-        </PostContent>
-
-        <PostContent>
-          <PostHeader>
-            <PostTitle>JavaScript data types and data structures</PostTitle>
-            <PostTime>Ha 1 dia</PostTime>
-          </PostHeader>
-
-          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
-</PostBody>
-        </PostContent>
-
-        <PostContent>
-          <PostHeader>
-            <PostTitle>JavaScript data types and data structures</PostTitle>
-            <PostTime>Ha 1 dia</PostTime>
-          </PostHeader>
-
-          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
-</PostBody>
-        </PostContent>
-
-        <PostContent>
-          <PostHeader>
-            <PostTitle>JavaScript data types and data structures</PostTitle>
-            <PostTime>Ha 1 dia</PostTime>
-          </PostHeader>
-
-          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
-</PostBody>
-        </PostContent>
-
-        <PostContent>
-          <PostHeader>
-            <PostTitle>JavaScript data types and data structures</PostTitle>
-            <PostTime>Ha 1 dia</PostTime>
-          </PostHeader>
-
-          <PostBody>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
-</PostBody>
-        </PostContent>
+              <PostBody>{item.body}</PostBody>
+            </PostContent>
+          )
+        })}
       </PostContainer>
     </BlogContainer>
   )
