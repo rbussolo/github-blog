@@ -32,13 +32,18 @@ export function Post() {
 
   const { id } = useParams();
 
-  const { title, html_url, user, created_at, comments, body } = issues;
+  const { title, html_url, user, created_at, comments } = issues;
+  const body = issues.body.replace(/\r\n/g, '<br />');
 
   useEffect(() => {
     fetch(`https://api.github.com/repos/rocketseat-education/reactjs-github-blog-challenge/issues/${id}`)
     .then(response => response.json())
     .then(data => setIssues(data));
   }, []);
+
+  function createMarkup(text: string) { 
+    return { __html: text }; 
+  }
 
   return (
     <PostContainer>
@@ -76,8 +81,7 @@ export function Post() {
           </PostInfo>
         </PostFooter>
       </PostHeader>
-      <PostBody>
-        { body }
+      <PostBody dangerouslySetInnerHTML={createMarkup(body)}>
       </PostBody>
     </PostContainer>
   )

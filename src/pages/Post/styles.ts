@@ -64,4 +64,8 @@ export const PostInfo = styled.div`
 
 export const PostBody = styled.main`
   padding: 2.5rem 2rem;
+
+  & img {
+    max-width: 100%;
+  }
 `
